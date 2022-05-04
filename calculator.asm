@@ -98,9 +98,9 @@
 		
 	printMessage: # Get $a0
 		li $v0, 4
-		syscall
+		syscallr
 		jr $ra
 	
 	exit: 
 		li $v0, 10
-		syscall
+		syscall7f
