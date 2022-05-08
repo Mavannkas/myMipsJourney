@@ -5,7 +5,7 @@
 .end_macro
 .data
 	output_msg: .asciiz "Twoj wynik to: "
-	in_i: .word 1
+	in_i: .word 15
 	out_f: .word 0
 .text
 	main:
