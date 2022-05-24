@@ -1,7 +1,14 @@
 .data
-	numberA: .byte 0x00, 0x99, 0xF0
-	numberB: .byte 0x00, 0x99, 0xF0
-	output: .space 2
+	numberA: .byte 0x99, 0x90, 0xF0, 0x00
+	fillw: .word 0,0,0,0,0,0,0
+	numberB: .byte 0x29, 0xF0, 0x00, 0x00
+	fillw2: .word 0,0,0,0,0,0,0
+	output: .space 3
+	fillw3: .word 0,0,0,0,0,0,0
+	sizeOfOutput: .word 3
+
+
+
 .text
 	main:
 		la $a0, numberA
@@ -10,7 +17,7 @@
 		jal add
 		
 		la $t1, output
-		li $t0, 2
+		lw $t0, sizeOfOutput
 		print:
 			beqz $t0, exitLoop
 			
@@ -274,7 +281,7 @@
 			bnez $t4, repeat_fix_loop
 			
 		while_back_3:
-			beq $t8, $t7, end_while_back_3		
+			bge $t8, $t7, end_while_back_3		
 			beqz $s5, no_zero_back_3
 				move $t0, $s6
 				subi $t0, $t0, 1
