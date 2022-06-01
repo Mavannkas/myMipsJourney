@@ -57,6 +57,14 @@ sum:
 	
 	sw $t0, 4($sp)
 	
+	li $t3, -1
+	li $t4, 1
+	
+	andi $t1, $t0, 1
+	beqz $t1, not_equal
+	mulo $t4, $t4, $t3
+	not_equal:
+	
 	while:
 		lw $t0, 4($sp) #get i
 		bltz $t0, end_while
@@ -69,6 +77,9 @@ sum:
 		add $t0, $t0, $t1
 		
 		lw $t1, ($t0) #get array[i]
+		
+		mulo $t1, $t1, $t4 # mul 1/-1
+		mulo $t4, $t3, $t4 
 		
 		lw $t0, ($sp) #get s
 		
